@@ -47,6 +47,8 @@
 #include <pcl/io/lzf.h>
 #include <pcl/console/time.h>
 
+#include <pcl/point_traits.h>
+
 #include <cstring>
 #include <cerrno>
 
