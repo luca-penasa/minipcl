@@ -1,20 +1,22 @@
-#include "pcl/io/pcd_io.h"
+#include "minipcl.h"
+
+#include <minipcl/PCLPointCloud2.h>
 
 int main(int argc, char ** argv)
 
 {
     std::string fname = argv[1];
 
-    pcl::PCDReader r;
+
 
     pcl::PCLPointCloud2 cloud;
-    r.read(fname, cloud);
+    minipcl::loadPCDFile(fname, cloud);
 
     std::cout << cloud << std::endl;
 
     // save the cloud again
-    pcl::PCDWriter w;
-    w.writeBinaryCompressed("out.pcd", cloud);
+    minipcl::savePCDFile("out.pcd", cloud);
+
 
 
     return 1;
