@@ -42,9 +42,10 @@
 #define PCL_COMMON_IO_H_
 
 #include <string>
-
+#include <minipcl/PointIndices.h>
 #include <minipcl/exceptions.h>
 #include <minipcl/PCLPointCloud2.h>
+#include <minipcl/point_cloud.h>
 
 #include <locale>
 
@@ -66,15 +67,15 @@ namespace pcl
     return (-1);
   }
 
-//  /** \brief Get the index of a specified field (i.e., dimension/channel)
-//    * \param[in] cloud the the point cloud message
-//    * \param[in] field_name the string defining the field name
-//    * \param[out] fields a vector to the original \a PCLPointField vector that the raw PointCloud message contains
-//    * \ingroup common
-//    */
-//  template <typename PointT> inline int
-//  getFieldIndex (const pcl::PointCloud<PointT> &cloud, const std::string &field_name,
-//                 std::vector<pcl::PCLPointField> &fields);
+  /** \brief Get the index of a specified field (i.e., dimension/channel)
+    * \param[in] cloud the the point cloud message
+    * \param[in] field_name the string defining the field name
+    * \param[out] fields a vector to the original \a PCLPointField vector that the raw PointCloud message contains
+    * \ingroup common
+    */
+  template <typename PointT> inline int
+  getFieldIndex (const pcl::PointCloud<PointT> &cloud, const std::string &field_name,
+                 std::vector<pcl::PCLPointField> &fields);
 
   /** \brief Get the index of a specified field (i.e., dimension/channel)
     * \param[in] field_name the string defining the field name
@@ -90,22 +91,22 @@ namespace pcl
     * \param[out] fields a vector to the original \a PCLPointField vector that the raw PointCloud message contains
     * \ingroup common
     */
-//  template <typename PointT> inline void
-//  getFields (const pcl::PointCloud<PointT> &cloud, std::vector<pcl::PCLPointField> &fields);
+  template <typename PointT> inline void
+  getFields (const pcl::PointCloud<PointT> &cloud, std::vector<pcl::PCLPointField> &fields);
 
   /** \brief Get the list of available fields (i.e., dimension/channel)
     * \param[out] fields a vector to the original \a PCLPointField vector that the raw PointCloud message contains
     * \ingroup common
     */
-//  template <typename PointT> inline void
-//  getFields (std::vector<pcl::PCLPointField> &fields);
+  template <typename PointT> inline void
+  getFields (std::vector<pcl::PCLPointField> &fields);
 
   /** \brief Get the list of all fields available in a given cloud
     * \param[in] cloud the the point cloud message
     * \ingroup common
     */
-//  template <typename PointT> inline std::string
-//  getFieldsList (const pcl::PointCloud<PointT> &cloud);
+  template <typename PointT> inline std::string
+  getFieldsList (const pcl::PointCloud<PointT> &cloud);
 
   /** \brief Get the available point cloud fields as a space separated string
     * \param[in] cloud a pointer to the PointCloud message
@@ -302,10 +303,10 @@ namespace pcl
     * \note Assumes unique indices.
     * \ingroup common
     */
-//  template <typename PointT> void
-//  copyPointCloud (const pcl::PointCloud<PointT> &cloud_in,
-//                  const std::vector<int> &indices,
-//                  pcl::PointCloud<PointT> &cloud_out);
+  template <typename PointT> void
+  copyPointCloud (const pcl::PointCloud<PointT> &cloud_in,
+                  const std::vector<int> &indices,
+                  pcl::PointCloud<PointT> &cloud_out);
  
   /** \brief Extract the indices of a given point cloud as a new point cloud
     * \param[in] cloud_in the input point cloud dataset
@@ -314,10 +315,10 @@ namespace pcl
     * \note Assumes unique indices.
     * \ingroup common
     */
-//  template <typename PointT> void
-//  copyPointCloud (const pcl::PointCloud<PointT> &cloud_in,
-//                  const std::vector<int, Eigen::aligned_allocator<int> > &indices,
-//                  pcl::PointCloud<PointT> &cloud_out);
+  template <typename PointT> void
+  copyPointCloud (const pcl::PointCloud<PointT> &cloud_in,
+                  const std::vector<int, Eigen::aligned_allocator<int> > &indices,
+                  pcl::PointCloud<PointT> &cloud_out);
 
   /** \brief Extract the indices of a given point cloud as a new point cloud
     * \param[in] cloud_in the input point cloud dataset
@@ -326,10 +327,10 @@ namespace pcl
     * \note Assumes unique indices.
     * \ingroup common
     */
-//  template <typename PointT> void
-//  copyPointCloud (const pcl::PointCloud<PointT> &cloud_in,
-//                  const PointIndices &indices,
-//                  pcl::PointCloud<PointT> &cloud_out);
+  template <typename PointT> void
+  copyPointCloud (const pcl::PointCloud<PointT> &cloud_in,
+                  const PointIndices &indices,
+                  pcl::PointCloud<PointT> &cloud_out);
 
   /** \brief Extract the indices of a given point cloud as a new point cloud
     * \param[in] cloud_in the input point cloud dataset
@@ -338,19 +339,19 @@ namespace pcl
     * \note Assumes unique indices.
     * \ingroup common
     */
-//  template <typename PointT> void
-//  copyPointCloud (const pcl::PointCloud<PointT> &cloud_in,
-//                  const std::vector<pcl::PointIndices> &indices,
-//                  pcl::PointCloud<PointT> &cloud_out);
+  template <typename PointT> void
+  copyPointCloud (const pcl::PointCloud<PointT> &cloud_in,
+                  const std::vector<pcl::PointIndices> &indices,
+                  pcl::PointCloud<PointT> &cloud_out);
 
   /** \brief Copy all the fields from a given point cloud into a new point cloud
     * \param[in] cloud_in the input point cloud dataset
     * \param[out] cloud_out the resultant output point cloud dataset
     * \ingroup common
     */
-//  template <typename PointInT, typename PointOutT> void
-//  copyPointCloud (const pcl::PointCloud<PointInT> &cloud_in,
-//                  pcl::PointCloud<PointOutT> &cloud_out);
+  template <typename PointInT, typename PointOutT> void
+  copyPointCloud (const pcl::PointCloud<PointInT> &cloud_in,
+                  pcl::PointCloud<PointOutT> &cloud_out);
 
   /** \brief Extract the indices of a given point cloud as a new point cloud
     * \param[in] cloud_in the input point cloud dataset
@@ -359,10 +360,10 @@ namespace pcl
     * \note Assumes unique indices.
     * \ingroup common
     */
-//  template <typename PointInT, typename PointOutT> void
-//  copyPointCloud (const pcl::PointCloud<PointInT> &cloud_in,
-//                  const std::vector<int> &indices,
-//                  pcl::PointCloud<PointOutT> &cloud_out);
+  template <typename PointInT, typename PointOutT> void
+  copyPointCloud (const pcl::PointCloud<PointInT> &cloud_in,
+                  const std::vector<int> &indices,
+                  pcl::PointCloud<PointOutT> &cloud_out);
 
   /** \brief Extract the indices of a given point cloud as a new point cloud
     * \param[in] cloud_in the input point cloud dataset
@@ -371,10 +372,10 @@ namespace pcl
     * \note Assumes unique indices.
     * \ingroup common
     */
-//  template <typename PointInT, typename PointOutT> void
-//  copyPointCloud (const pcl::PointCloud<PointInT> &cloud_in,
-//                  const std::vector<int, Eigen::aligned_allocator<int> > &indices,
-//                  pcl::PointCloud<PointOutT> &cloud_out);
+  template <typename PointInT, typename PointOutT> void
+  copyPointCloud (const pcl::PointCloud<PointInT> &cloud_in,
+                  const std::vector<int, Eigen::aligned_allocator<int> > &indices,
+                  pcl::PointCloud<PointOutT> &cloud_out);
 
   /** \brief Extract the indices of a given point cloud as a new point cloud
     * \param[in] cloud_in the input point cloud dataset
@@ -383,63 +384,63 @@ namespace pcl
     * \note Assumes unique indices.
     * \ingroup common
     */
-//  template <typename PointInT, typename PointOutT> void
-//  copyPointCloud (const pcl::PointCloud<PointInT> &cloud_in,
-//                  const PointIndices &indices,
-//                  pcl::PointCloud<PointOutT> &cloud_out);
+  template <typename PointInT, typename PointOutT> void
+  copyPointCloud (const pcl::PointCloud<PointInT> &cloud_in,
+                  const PointIndices &indices,
+                  pcl::PointCloud<PointOutT> &cloud_out);
 
-//  /** \brief Extract the indices of a given point cloud as a new point cloud
-//    * \param[in] cloud_in the input point cloud dataset
-//    * \param[in] indices the vector of indices representing the points to be copied from cloud_in
-//    * \param[out] cloud_out the resultant output point cloud dataset
-//    * \note Assumes unique indices.
-//    * \ingroup common
-//    */
-//  template <typename PointInT, typename PointOutT> void
-//  copyPointCloud (const pcl::PointCloud<PointInT> &cloud_in,
-//                  const std::vector<pcl::PointIndices> &indices,
-//                  pcl::PointCloud<PointOutT> &cloud_out);
+  /** \brief Extract the indices of a given point cloud as a new point cloud
+    * \param[in] cloud_in the input point cloud dataset
+    * \param[in] indices the vector of indices representing the points to be copied from cloud_in
+    * \param[out] cloud_out the resultant output point cloud dataset
+    * \note Assumes unique indices.
+    * \ingroup common
+    */
+  template <typename PointInT, typename PointOutT> void
+  copyPointCloud (const pcl::PointCloud<PointInT> &cloud_in,
+                  const std::vector<pcl::PointIndices> &indices,
+                  pcl::PointCloud<PointOutT> &cloud_out);
 
-//  /** \brief Copy a point cloud inside a larger one interpolating borders.
-//    * \param[in] cloud_in the input point cloud dataset
-//    * \param[out] cloud_out the resultant output point cloud dataset
-//    * \param top
-//    * \param bottom
-//    * \param left
-//    * \param right
-//    * Position of cloud_in inside cloud_out is given by \a top, \a left, \a bottom \a right.
-//    * \param[in] border_type the interpolating method (pcl::BORDER_XXX)
-//    *  BORDER_REPLICATE:     aaaaaa|abcdefgh|hhhhhhh
-//    *  BORDER_REFLECT:       fedcba|abcdefgh|hgfedcb
-//    *  BORDER_REFLECT_101:   gfedcb|abcdefgh|gfedcba
-//    *  BORDER_WRAP:          cdefgh|abcdefgh|abcdefg
-//    *  BORDER_CONSTANT:      iiiiii|abcdefgh|iiiiiii  with some specified 'i'
-//    *  BORDER_TRANSPARENT:   mnopqr|abcdefgh|tuvwxyz  where m-r and t-z are orignal values of cloud_out
-//    * \param value
-//    * \throw pcl::BadArgumentException if any of top, bottom, left or right is negative.
-//    * \ingroup common
-//    */
-//  template <typename PointT> void
-//  copyPointCloud (const pcl::PointCloud<PointT> &cloud_in,
-//                  pcl::PointCloud<PointT> &cloud_out,
-//                  int top, int bottom, int left, int right,
-//                  pcl::InterpolationType border_type, const PointT& value);
+  /** \brief Copy a point cloud inside a larger one interpolating borders.
+    * \param[in] cloud_in the input point cloud dataset
+    * \param[out] cloud_out the resultant output point cloud dataset
+    * \param top
+    * \param bottom
+    * \param left
+    * \param right
+    * Position of cloud_in inside cloud_out is given by \a top, \a left, \a bottom \a right.
+    * \param[in] border_type the interpolating method (pcl::BORDER_XXX)
+    *  BORDER_REPLICATE:     aaaaaa|abcdefgh|hhhhhhh
+    *  BORDER_REFLECT:       fedcba|abcdefgh|hgfedcb
+    *  BORDER_REFLECT_101:   gfedcb|abcdefgh|gfedcba
+    *  BORDER_WRAP:          cdefgh|abcdefgh|abcdefg
+    *  BORDER_CONSTANT:      iiiiii|abcdefgh|iiiiiii  with some specified 'i'
+    *  BORDER_TRANSPARENT:   mnopqr|abcdefgh|tuvwxyz  where m-r and t-z are orignal values of cloud_out
+    * \param value
+    * \throw pcl::BadArgumentException if any of top, bottom, left or right is negative.
+    * \ingroup common
+    */
+  template <typename PointT> void
+  copyPointCloud (const pcl::PointCloud<PointT> &cloud_in,
+                  pcl::PointCloud<PointT> &cloud_out,
+                  int top, int bottom, int left, int right,
+                  pcl::InterpolationType border_type, const PointT& value);
 
-//  /** \brief Concatenate two datasets representing different fields.
-//    *
-//    * \note If the input datasets have overlapping fields (i.e., both contain
-//    * the same fields), then the data in the second cloud (cloud2_in) will
-//    * overwrite the data in the first (cloud1_in).
-//    *
-//    * \param[in] cloud1_in the first input dataset
-//    * \param[in] cloud2_in the second input dataset (overwrites the fields of the first dataset for those that are shared)
-//    * \param[out] cloud_out the resultant output dataset created by the concatenation of all the fields in the input datasets
-//    * \ingroup common
-//    */
-//  template <typename PointIn1T, typename PointIn2T, typename PointOutT> void
-//  concatenateFields (const pcl::PointCloud<PointIn1T> &cloud1_in,
-//                     const pcl::PointCloud<PointIn2T> &cloud2_in,
-//                     pcl::PointCloud<PointOutT> &cloud_out);
+  /** \brief Concatenate two datasets representing different fields.
+    *
+    * \note If the input datasets have overlapping fields (i.e., both contain
+    * the same fields), then the data in the second cloud (cloud2_in) will
+    * overwrite the data in the first (cloud1_in).
+    *
+    * \param[in] cloud1_in the first input dataset
+    * \param[in] cloud2_in the second input dataset (overwrites the fields of the first dataset for those that are shared)
+    * \param[out] cloud_out the resultant output dataset created by the concatenation of all the fields in the input datasets
+    * \ingroup common
+    */
+  template <typename PointIn1T, typename PointIn2T, typename PointOutT> void
+  concatenateFields (const pcl::PointCloud<PointIn1T> &cloud1_in,
+                     const pcl::PointCloud<PointIn2T> &cloud2_in,
+                     pcl::PointCloud<PointOutT> &cloud_out);
 
   /** \brief Concatenate two datasets representing different fields.
     *
@@ -529,7 +530,7 @@ namespace pcl
   }
 }
 
-//#include <pcl/common/impl/io.hpp>
+#include <minipcl/io.hpp>
 
 #endif  //#ifndef PCL_COMMON_IO_H_
 

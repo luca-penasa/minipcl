@@ -39,7 +39,7 @@
 #define PCL_IO_FILE_IO_H_
 
 #include <minipcl/pcl_macros.h>
-//#include <pcl/common/io.h>
+#include <minipcl/io.h>
 #include <minipcl/PCLPointCloud2.h>
 #include <minipcl/boost.h>
 #include <cmath>
@@ -138,20 +138,20 @@ namespace pcl
         * add a 512 byte header in front of the actual file, so set the offset
         * to the next byte after the header (e.g., 513).
         */
-//      template<typename PointT> inline int
-//      read (const std::string &file_name, pcl::PointCloud<PointT> &cloud, const int offset  =0)
-//      {
-//        pcl::PCLPointCloud2 blob;
-//        int file_version;
-//        int res = read (file_name, blob, cloud.sensor_origin_, cloud.sensor_orientation_,
-//                        file_version, offset);
+      template<typename PointT> inline int
+      read (const std::string &file_name, pcl::PointCloud<PointT> &cloud, const int offset  =0)
+      {
+        pcl::PCLPointCloud2 blob;
+        int file_version;
+        int res = read (file_name, blob, cloud.sensor_origin_, cloud.sensor_orientation_,
+                        file_version, offset);
 
-//        // Exit in case of error
-//        if (res < 0)
-//          return res;
-//        pcl::fromPCLPointCloud2 (blob, cloud);
-//        return (0);
-//      }
+        // Exit in case of error
+        if (res < 0)
+          return res;
+        pcl::fromPCLPointCloud2 (blob, cloud);
+        return (0);
+      }
   };
 
   /** \brief Point Cloud Data (FILE) file format writer.
@@ -205,20 +205,20 @@ namespace pcl
         * \param[in] binary set to true if the file is to be written in a binary
         * FILE format, false (default) for ASCII
         */
-//      template<typename PointT> inline int
-//      write (const std::string &file_name,
-//             const pcl::PointCloud<PointT> &cloud,
-//             const bool binary = false)
-//      {
-//        Eigen::Vector4f origin = cloud.sensor_origin_;
-//        Eigen::Quaternionf orientation = cloud.sensor_orientation_;
+      template<typename PointT> inline int
+      write (const std::string &file_name,
+             const pcl::PointCloud<PointT> &cloud,
+             const bool binary = false)
+      {
+        Eigen::Vector4f origin = cloud.sensor_origin_;
+        Eigen::Quaternionf orientation = cloud.sensor_orientation_;
 
-//        pcl::PCLPointCloud2 blob;
-//        pcl::toPCLPointCloud2 (cloud, blob);
+        pcl::PCLPointCloud2 blob;
+        pcl::toPCLPointCloud2 (cloud, blob);
 
-//        // Save the data
-//        return (write (file_name, blob, origin, orientation, binary));
-//      }
+        // Save the data
+        return (write (file_name, blob, origin, orientation, binary));
+      }
   };
 
   /** \brief insers a value of type Type (uchar, char, uint, int, float, double, ...) into a stringstream.
