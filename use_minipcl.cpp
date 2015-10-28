@@ -1,10 +1,11 @@
 #include "minipcl.h"
 
-#include <minipcl/PCLPointCloud2.h>
-#include <minipcl/point_cloud.h>
+#include <pcl/PCLPointCloud2.h>
+#include <pcl/point_cloud.h>
+#include <pcl/conversions.h>
 
-#include <minipcl/auto_io.h>
-#include <minipcl/auto_io.hpp>
+#include <pcl/io/auto_io.h>
+#include <pcl/io/impl/auto_io.hpp>
 
 int main(int argc, char ** argv)
 
@@ -13,19 +14,14 @@ int main(int argc, char ** argv)
 
     pcl::PointCloud<pcl::PointXYZ> c1;
 
-
-    pcl::PCLPointCloud2 cloud;
-
     pcl::io::load(fname, c1);
 
-//    minipcl::loadPCDFile(fname, cloud);
+//    std::cout << cloud << std::endl;
+    pcl::PCLPointCloud2 cloud;
 
-
-
-    std::cout << cloud << std::endl;
-
+    pcl::toPCLPointCloud2(c1, cloud);
     // save the cloud again
-    pcl::io::save("out.pcd", c1, 6);
+    pcl::io::save("out.pcd", cloud, 6);
 
 
 

@@ -40,9 +40,8 @@
 #ifndef PCL_IO_PCD_IO_H_
 #define PCL_IO_PCD_IO_H_
 
-#include <minipcl/point_cloud.h>
-#include <minipcl/file_io.h>
-#include <Eigen/Geometry>
+#include <pcl/point_cloud.h>
+#include <pcl/io/file_io.h>
 
 namespace pcl
 {
@@ -206,7 +205,7 @@ namespace pcl
       {
         pcl::PCLPointCloud2 blob;
         int pcd_version;
-        int res = read (file_name, blob, cloud.sensor_origin_, cloud.sensor_orientation_,
+        int res = read (file_name, blob, cloud.sensor_origin_, cloud.sensor_orientation_, 
                         pcd_version, offset);
 
         // If no error, convert the data
@@ -278,7 +277,7 @@ namespace pcl
         * By default, nr_points is set to INTMAX, and the data in the header is used instead.
         */
       template <typename PointT> static std::string
-      generateHeader (const pcl::PointCloud<PointT> &cloud,
+      generateHeader (const pcl::PointCloud<PointT> &cloud, 
                       const int nr_points = std::numeric_limits<int>::max ());
 
       /** \brief Save point cloud data to a PCD file containing n-D points, in ASCII format
@@ -382,16 +381,16 @@ namespace pcl
         * \param[in] file_name the output file name
         * \param[in] cloud the point cloud data message
         */
-      template <typename PointT> int
-      writeBinary (const std::string &file_name,
+      template <typename PointT> int 
+      writeBinary (const std::string &file_name, 
                    const pcl::PointCloud<PointT> &cloud);
 
       /** \brief Save point cloud data to a binary comprssed PCD file
         * \param[in] file_name the output file name
         * \param[in] cloud the point cloud data message
         */
-      template <typename PointT> int
-      writeBinaryCompressed (const std::string &file_name,
+      template <typename PointT> int 
+      writeBinaryCompressed (const std::string &file_name, 
                              const pcl::PointCloud<PointT> &cloud);
 
       /** \brief Save point cloud data to a PCD file containing n-D points, in BINARY format
@@ -399,9 +398,9 @@ namespace pcl
         * \param[in] cloud the point cloud data message
         * \param[in] indices the set of point indices that we want written to disk
         */
-      template <typename PointT> int
-      writeBinary (const std::string &file_name,
-                   const pcl::PointCloud<PointT> &cloud,
+      template <typename PointT> int 
+      writeBinary (const std::string &file_name, 
+                   const pcl::PointCloud<PointT> &cloud, 
                    const std::vector<int> &indices);
 
       /** \brief Save point cloud data to a PCD file containing n-D points, in ASCII format
@@ -409,8 +408,8 @@ namespace pcl
         * \param[in] cloud the point cloud data message
         * \param[in] precision the specified output numeric stream precision (default: 8)
         */
-      template <typename PointT> int
-      writeASCII (const std::string &file_name,
+      template <typename PointT> int 
+      writeASCII (const std::string &file_name, 
                   const pcl::PointCloud<PointT> &cloud,
                   const int precision = 8);
 
@@ -420,8 +419,8 @@ namespace pcl
         * \param[in] indices the set of point indices that we want written to disk
         * \param[in] precision the specified output numeric stream precision (default: 8)
         */
-      template <typename PointT> int
-      writeASCII (const std::string &file_name,
+      template <typename PointT> int 
+      writeASCII (const std::string &file_name, 
                   const pcl::PointCloud<PointT> &cloud,
                   const std::vector<int> &indices,
                   const int precision = 8);
@@ -440,8 +439,8 @@ namespace pcl
         * future versions of PCL.
         */
       template<typename PointT> inline int
-      write (const std::string &file_name,
-             const pcl::PointCloud<PointT> &cloud,
+      write (const std::string &file_name, 
+             const pcl::PointCloud<PointT> &cloud, 
              const bool binary = false)
       {
         if (binary)
@@ -465,8 +464,8 @@ namespace pcl
         * future versions of PCL.
         */
       template<typename PointT> inline int
-      write (const std::string &file_name,
-             const pcl::PointCloud<PointT> &cloud,
+      write (const std::string &file_name, 
+             const pcl::PointCloud<PointT> &cloud, 
              const std::vector<int> &indices,
              bool binary = false)
       {
@@ -614,7 +613,7 @@ namespace pcl
       return (w.write<PointT> (file_name, cloud, false));
     }
 
-    /**
+    /** 
       * \brief Templated version for saving point cloud data to a PCD file
       * containing a specific given cloud format. The resulting file will be an uncompressed binary.
       *
@@ -648,9 +647,9 @@ namespace pcl
       * \ingroup io
       */
     template<typename PointT> int
-    savePCDFile (const std::string &file_name,
+    savePCDFile (const std::string &file_name, 
                  const pcl::PointCloud<PointT> &cloud,
-                 const std::vector<int> &indices,
+                 const std::vector<int> &indices, 
                  const bool binary_mode = false)
     {
       // Save the data
@@ -678,6 +677,6 @@ namespace pcl
   }
 }
 
-#include <minipcl/pcd_io.hpp>
+#include <pcl/io/impl/pcd_io.hpp>
 
 #endif  //#ifndef PCL_IO_PCD_IO_H_

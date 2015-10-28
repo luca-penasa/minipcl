@@ -9,7 +9,7 @@
 #include <vector>
 #include <ostream>
 #include <boost/shared_ptr.hpp>
-#include <minipcl/pcl_macros.h>
+#include <pcl/pcl_macros.h>
 
 namespace pcl
 {

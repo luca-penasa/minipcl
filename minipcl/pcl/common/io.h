@@ -42,14 +42,12 @@
 #define PCL_COMMON_IO_H_
 
 #include <string>
-#include <minipcl/PointIndices.h>
-#include <minipcl/exceptions.h>
-#include <minipcl/PCLPointCloud2.h>
-#include <minipcl/point_cloud.h>
-
+#include <pcl/pcl_base.h>
+#include <pcl/PointIndices.h>
+#include <pcl/conversions.h>
+#include <pcl/exceptions.h>
 #include <locale>
 
-#include <Eigen/Core>
 namespace pcl
 {
   /** \brief Get the index of a specified field (i.e., dimension/channel)
@@ -73,8 +71,8 @@ namespace pcl
     * \param[out] fields a vector to the original \a PCLPointField vector that the raw PointCloud message contains
     * \ingroup common
     */
-  template <typename PointT> inline int
-  getFieldIndex (const pcl::PointCloud<PointT> &cloud, const std::string &field_name,
+  template <typename PointT> inline int 
+  getFieldIndex (const pcl::PointCloud<PointT> &cloud, const std::string &field_name, 
                  std::vector<pcl::PCLPointField> &fields);
 
   /** \brief Get the index of a specified field (i.e., dimension/channel)
@@ -91,21 +89,21 @@ namespace pcl
     * \param[out] fields a vector to the original \a PCLPointField vector that the raw PointCloud message contains
     * \ingroup common
     */
-  template <typename PointT> inline void
+  template <typename PointT> inline void 
   getFields (const pcl::PointCloud<PointT> &cloud, std::vector<pcl::PCLPointField> &fields);
 
   /** \brief Get the list of available fields (i.e., dimension/channel)
     * \param[out] fields a vector to the original \a PCLPointField vector that the raw PointCloud message contains
     * \ingroup common
     */
-  template <typename PointT> inline void
+  template <typename PointT> inline void 
   getFields (std::vector<pcl::PCLPointField> &fields);
 
   /** \brief Get the list of all fields available in a given cloud
     * \param[in] cloud the the point cloud message
     * \ingroup common
     */
-  template <typename PointT> inline std::string
+  template <typename PointT> inline std::string 
   getFieldsList (const pcl::PointCloud<PointT> &cloud);
 
   /** \brief Get the available point cloud fields as a space separated string
@@ -303,9 +301,9 @@ namespace pcl
     * \note Assumes unique indices.
     * \ingroup common
     */
-  template <typename PointT> void
-  copyPointCloud (const pcl::PointCloud<PointT> &cloud_in,
-                  const std::vector<int> &indices,
+  template <typename PointT> void 
+  copyPointCloud (const pcl::PointCloud<PointT> &cloud_in, 
+                  const std::vector<int> &indices, 
                   pcl::PointCloud<PointT> &cloud_out);
  
   /** \brief Extract the indices of a given point cloud as a new point cloud
@@ -315,9 +313,9 @@ namespace pcl
     * \note Assumes unique indices.
     * \ingroup common
     */
-  template <typename PointT> void
-  copyPointCloud (const pcl::PointCloud<PointT> &cloud_in,
-                  const std::vector<int, Eigen::aligned_allocator<int> > &indices,
+  template <typename PointT> void 
+  copyPointCloud (const pcl::PointCloud<PointT> &cloud_in, 
+                  const std::vector<int, Eigen::aligned_allocator<int> > &indices, 
                   pcl::PointCloud<PointT> &cloud_out);
 
   /** \brief Extract the indices of a given point cloud as a new point cloud
@@ -327,9 +325,9 @@ namespace pcl
     * \note Assumes unique indices.
     * \ingroup common
     */
-  template <typename PointT> void
-  copyPointCloud (const pcl::PointCloud<PointT> &cloud_in,
-                  const PointIndices &indices,
+  template <typename PointT> void 
+  copyPointCloud (const pcl::PointCloud<PointT> &cloud_in, 
+                  const PointIndices &indices, 
                   pcl::PointCloud<PointT> &cloud_out);
 
   /** \brief Extract the indices of a given point cloud as a new point cloud
@@ -339,9 +337,9 @@ namespace pcl
     * \note Assumes unique indices.
     * \ingroup common
     */
-  template <typename PointT> void
-  copyPointCloud (const pcl::PointCloud<PointT> &cloud_in,
-                  const std::vector<pcl::PointIndices> &indices,
+  template <typename PointT> void 
+  copyPointCloud (const pcl::PointCloud<PointT> &cloud_in, 
+                  const std::vector<pcl::PointIndices> &indices, 
                   pcl::PointCloud<PointT> &cloud_out);
 
   /** \brief Copy all the fields from a given point cloud into a new point cloud
@@ -349,8 +347,8 @@ namespace pcl
     * \param[out] cloud_out the resultant output point cloud dataset
     * \ingroup common
     */
-  template <typename PointInT, typename PointOutT> void
-  copyPointCloud (const pcl::PointCloud<PointInT> &cloud_in,
+  template <typename PointInT, typename PointOutT> void 
+  copyPointCloud (const pcl::PointCloud<PointInT> &cloud_in, 
                   pcl::PointCloud<PointOutT> &cloud_out);
 
   /** \brief Extract the indices of a given point cloud as a new point cloud
@@ -360,9 +358,9 @@ namespace pcl
     * \note Assumes unique indices.
     * \ingroup common
     */
-  template <typename PointInT, typename PointOutT> void
-  copyPointCloud (const pcl::PointCloud<PointInT> &cloud_in,
-                  const std::vector<int> &indices,
+  template <typename PointInT, typename PointOutT> void 
+  copyPointCloud (const pcl::PointCloud<PointInT> &cloud_in, 
+                  const std::vector<int> &indices, 
                   pcl::PointCloud<PointOutT> &cloud_out);
 
   /** \brief Extract the indices of a given point cloud as a new point cloud
@@ -372,9 +370,9 @@ namespace pcl
     * \note Assumes unique indices.
     * \ingroup common
     */
-  template <typename PointInT, typename PointOutT> void
-  copyPointCloud (const pcl::PointCloud<PointInT> &cloud_in,
-                  const std::vector<int, Eigen::aligned_allocator<int> > &indices,
+  template <typename PointInT, typename PointOutT> void 
+  copyPointCloud (const pcl::PointCloud<PointInT> &cloud_in, 
+                  const std::vector<int, Eigen::aligned_allocator<int> > &indices, 
                   pcl::PointCloud<PointOutT> &cloud_out);
 
   /** \brief Extract the indices of a given point cloud as a new point cloud
@@ -384,9 +382,9 @@ namespace pcl
     * \note Assumes unique indices.
     * \ingroup common
     */
-  template <typename PointInT, typename PointOutT> void
-  copyPointCloud (const pcl::PointCloud<PointInT> &cloud_in,
-                  const PointIndices &indices,
+  template <typename PointInT, typename PointOutT> void 
+  copyPointCloud (const pcl::PointCloud<PointInT> &cloud_in, 
+                  const PointIndices &indices, 
                   pcl::PointCloud<PointOutT> &cloud_out);
 
   /** \brief Extract the indices of a given point cloud as a new point cloud
@@ -396,9 +394,9 @@ namespace pcl
     * \note Assumes unique indices.
     * \ingroup common
     */
-  template <typename PointInT, typename PointOutT> void
-  copyPointCloud (const pcl::PointCloud<PointInT> &cloud_in,
-                  const std::vector<pcl::PointIndices> &indices,
+  template <typename PointInT, typename PointOutT> void 
+  copyPointCloud (const pcl::PointCloud<PointInT> &cloud_in, 
+                  const std::vector<pcl::PointIndices> &indices, 
                   pcl::PointCloud<PointOutT> &cloud_out);
 
   /** \brief Copy a point cloud inside a larger one interpolating borders.
@@ -437,9 +435,9 @@ namespace pcl
     * \param[out] cloud_out the resultant output dataset created by the concatenation of all the fields in the input datasets
     * \ingroup common
     */
-  template <typename PointIn1T, typename PointIn2T, typename PointOutT> void
-  concatenateFields (const pcl::PointCloud<PointIn1T> &cloud1_in,
-                     const pcl::PointCloud<PointIn2T> &cloud2_in,
+  template <typename PointIn1T, typename PointIn2T, typename PointOutT> void 
+  concatenateFields (const pcl::PointCloud<PointIn1T> &cloud1_in, 
+                     const pcl::PointCloud<PointIn2T> &cloud2_in, 
                      pcl::PointCloud<PointOutT> &cloud_out);
 
   /** \brief Concatenate two datasets representing different fields.
@@ -530,7 +528,7 @@ namespace pcl
   }
 }
 
-#include <minipcl/io.hpp>
+#include <pcl/common/impl/io.hpp>
 
 #endif  //#ifndef PCL_COMMON_IO_H_
 

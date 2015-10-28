@@ -38,14 +38,14 @@
 #ifndef PCL_IO_FILE_IO_H_
 #define PCL_IO_FILE_IO_H_
 
-#include <minipcl/pcl_macros.h>
-#include <minipcl/io.h>
-#include <minipcl/PCLPointCloud2.h>
-#include <minipcl/boost.h>
+#include <pcl/pcl_macros.h>
+#include <pcl/common/io.h>
+#include <pcl/io/boost.h>
 #include <cmath>
 #include <sstream>
+#include <pcl/PolygonMesh.h>
+#include <pcl/TextureMesh.h>
 
-#include <Eigen/Geometry>
 namespace pcl
 {
   /** \brief Point Cloud Data (FILE) file format reader interface.
@@ -143,7 +143,7 @@ namespace pcl
       {
         pcl::PCLPointCloud2 blob;
         int file_version;
-        int res = read (file_name, blob, cloud.sensor_origin_, cloud.sensor_orientation_,
+        int res = read (file_name, blob, cloud.sensor_origin_, cloud.sensor_orientation_, 
                         file_version, offset);
 
         // Exit in case of error
@@ -206,8 +206,8 @@ namespace pcl
         * FILE format, false (default) for ASCII
         */
       template<typename PointT> inline int
-      write (const std::string &file_name,
-             const pcl::PointCloud<PointT> &cloud,
+      write (const std::string &file_name, 
+             const pcl::PointCloud<PointT> &cloud, 
              const bool binary = false)
       {
         Eigen::Vector4f origin = cloud.sensor_origin_;

@@ -2,8 +2,7 @@
  * Software License Agreement (BSD License)
  *
  *  Point Cloud Library (PCL) - www.pointclouds.org
- *  Copyright (c) 2010-2012, Willow Garage, Inc.
- *  Copyright (c) 2012-, Open Perception, Inc.
+ *  Copyright (c) 2014-, Open Perception, Inc.
  *
  *  All rights reserved.
  *
@@ -35,61 +34,29 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  *
  */
-#ifndef TERMINAL_TOOLS_TIME_H_
-#define TERMINAL_TOOLS_TIME_H_
 
-#ifdef __GNUC__
-#pragma GCC system_header 
-#endif
-
-#ifndef Q_MOC_RUN
-#include <boost/date_time/posix_time/posix_time.hpp>
-#endif
-#include <minipcl/print.h>
+#ifndef PCL_COMMON_COPY_POINT_H_
+#define PCL_COMMON_COPY_POINT_H_
 
 namespace pcl
 {
-  namespace console
-  {
-    class TicToc
-    {
-      public:
 
-        TicToc () : tictic (), toctoc () {}
+  /** \brief Copy the fields of a source point into a target point.
+    *
+    * If the source and the target point types are the same, then a complete
+    * copy is made. Otherwise only those fields that the two point types share
+    * in common are copied.
+    *
+    * \param[in]  point_in the source point
+    * \param[out] point_out the target point
+    *
+    * \ingroup common */
+  template <typename PointInT, typename PointOutT> void
+  copyPoint (const PointInT& point_in, PointOutT& point_out);
 
-        void 
-        tic ()
-        {
-          tictic = boost::posix_time::microsec_clock::local_time ();
-        };
-
-        inline double 
-        toc ()
-        {
-          toctoc = boost::posix_time::microsec_clock::local_time ();
-          return (static_cast<double> ((toctoc - tictic).total_milliseconds ()));
-        };
-        
-        inline void 
-        toc_print ()
-        {
-          double milliseconds = toc ();
-          //int minutes = (int) floor ( seconds / 60.0 );
-          //seconds -= minutes * 60.0;
-          //if (minutes != 0)
-          //{
-          //  print_value ("%i", minutes);
-          //  print_info (" minutes, ");
-          //}
-          print_value ("%g", milliseconds);
-          print_info (" ms\n");
-        };
-      
-      private:
-        boost::posix_time::ptime tictic;
-        boost::posix_time::ptime toctoc;
-    };
-  } 
 }
 
-#endif
+#include <pcl/common/impl/copy_point.hpp>
+
+#endif // PCL_COMMON_COPY_POINT_H_
+

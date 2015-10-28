@@ -38,7 +38,7 @@
 #ifndef PCL_IO_LZF_H
 #define PCL_IO_LZF_H
 
-#include <minipcl/pcl_macros.h>
+#include <pcl/pcl_macros.h>
 
 namespace pcl
 {

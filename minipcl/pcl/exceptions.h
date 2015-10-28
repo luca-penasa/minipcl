@@ -39,7 +39,7 @@
 
 #include <stdexcept>
 #include <sstream>
-#include <minipcl/pcl_macros.h>
+#include <pcl/pcl_macros.h>
 #include <boost/current_function.hpp>
 
 /** PCL_THROW_EXCEPTION a helper macro to be used for throwing exceptions.

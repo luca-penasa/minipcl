@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 #include <boost/shared_ptr.hpp>
-#include <minipcl/pcl_macros.h>
+#include <pcl/pcl_macros.h>
 #include <ostream>
 
 namespace pcl

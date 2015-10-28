@@ -11,8 +11,8 @@
 #include <boost/detail/endian.hpp>
 
 // Include the correct Header path here
-#include <minipcl/PCLHeader.h>
-#include <minipcl/PCLPointField.h>
+#include <pcl/PCLHeader.h>
+#include <pcl/PCLPointField.h>
 
 namespace pcl
 {

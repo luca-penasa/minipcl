@@ -43,9 +43,9 @@
 #pragma GCC system_header
 #endif
 
-#include "minipcl/pcl_macros.h"
+#include "pcl/pcl_macros.h"
 
-#include <minipcl/PCLPointField.h>
+#include <pcl/PCLPointField.h>
 #include <boost/type_traits/remove_all_extents.hpp>
 #include <boost/type_traits/is_same.hpp>
 #include <boost/mpl/assert.hpp>
