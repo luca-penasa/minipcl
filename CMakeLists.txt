@@ -3,6 +3,10 @@ cmake_minimum_required(VERSION 2.8)
 aux_source_directory(. SRC_LIST)
 
 
+if (UNIX)
+    add_definitions("-fPIC")
+endif()
+
 file  (GLOB_RECURSE SRCS "minipcl/*.cpp")
 file  (GLOB_RECURSE HEADS "minipcl/*.h")
 file  (GLOB_RECURSE IMPLS "minipcl/*.hpp")
