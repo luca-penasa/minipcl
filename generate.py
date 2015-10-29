@@ -76,7 +76,7 @@ source_origin = "auto_io.cpp"
 
 
 
-search_mod = [pcl_dir + '/common' ,  pcl_dir + '/io']
+search_mod = [pcl_dir + '/common' ,  pcl_dir + '/io', pcl_dir + '/filters']
 
 
 full_source_origin = includePathToFullPath(source_origin, search_mod)
@@ -122,7 +122,7 @@ def extract_hpp(fname):
 
 
 
-tocheck = ["src/auto_io.cpp"]
+tocheck = ["src/auto_io.cpp", "pcl/filters/passthrough.h"]
 checked = []
 
 full_list = []
