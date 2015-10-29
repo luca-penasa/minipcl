@@ -8,3 +8,6 @@ include("${MINIPCL_CMAKE_DIR}/minipclTargets.cmake")
 
 #finding for you Eigen
 list( APPEND MINIPCL_INCLUDE_DIRS "@EIGEN3_INCLUDE_DIR@")
+list( APPEND MINIPCL_LIBRARIES "@Boost_FILESYSTEM_LIBRARY@
+                                @Boost_SYSTEM_LIBRARY@
+                               @Boost_IOSTREAMS_LIBRARY@")
