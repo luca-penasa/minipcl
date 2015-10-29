@@ -20,17 +20,28 @@ INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/minipcl)
 
 
-
 add_library(minipcl ${SRCS} ${HEADS} ${IMPLS})
 
 
-add_executable(use_minipcl use_minipcl.cpp)
-target_link_libraries(use_minipcl
-  ${Boost_FILESYSTEM_LIBRARY}
-  ${Boost_SYSTEM_LIBRARY}
-  ${Boost_IOSTREAMS_LIBRARY}
-    minipcl
-)
+export(TARGETS minipcl FILE minipcl_exports.cmake)
+
+
+#################### tools and examples, off by default ###########
+option (MINIPCL_BUILD_EXAMPLE "build an example" OFF )
+
+    if (MINIPCL_BUILD_EXAMPLE)
+    add_executable(use_minipcl use_minipcl.cpp)
+    target_link_libraries(use_minipcl
+      ${Boost_FILESYSTEM_LIBRARY}
+      ${Boost_SYSTEM_LIBRARY}
+      ${Boost_IOSTREAMS_LIBRARY}
+        minipcl
+    )
+
+endif()
+
+
+
 
 
 
