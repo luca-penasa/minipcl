@@ -22,9 +22,20 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/minipcl)
 
 add_library(minipcl ${SRCS} ${HEADS} ${IMPLS})
 
+export(TARGETS minipcl FILE minipclTargets.cmake)
+export(PACKAGE minipcl)
 
-export(TARGETS minipcl FILE minipcl_exports.cmake)
 
+set(CONF_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/minipcl)
+set(CONF_LIBRARY_DIRS ${CMAKE_CURRENT_BINARY_DIR})
+set(MINIPCL_LIBRARIES "minipcl")
+
+
+
+
+#export in binary dir
+configure_file(minipclConfig.cmake.in
+  "${PROJECT_BINARY_DIR}/minipclConfig.cmake" @ONLY)
 
 #################### tools and examples, off by default ###########
 option (MINIPCL_BUILD_EXAMPLE "build an example" OFF )
