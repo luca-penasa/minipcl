@@ -4,3 +4,12 @@ set(MINIPCL_LIBRARIES "@MINIPCL_LIBRARIES@")
 
 get_filename_component(MINIPCL_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
 include("${MINIPCL_CMAKE_DIR}/minipclTargets.cmake")
+
+
+#finding for you Eigen
+
+find_package(Eigen3 REQUIRED)
+include_directories(${EIGEN3_INCLUDE_DIR})
+
+#find_package(Boost COMPONENTS system filesystem iostreams REQUIRED)
+#INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIR})
