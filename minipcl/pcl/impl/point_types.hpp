@@ -339,7 +339,8 @@ namespace pcl
 
     inline RGB ()
     {
-      r = g = b = a = 0;
+      r = g = b = 0;
+      a = 255;
     }
   
     friend std::ostream& operator << (std::ostream& os, const RGB& p);
@@ -614,7 +615,8 @@ namespace pcl
     {
       x = y = z = 0.0f;
       data[3] = 1.0f;
-      r = g = b = a = 0;
+      r = g = b = 0;
+      a = 255;
     }
     inline PointXYZRGB (uint8_t _r, uint8_t _g, uint8_t _b)
     {
@@ -623,7 +625,7 @@ namespace pcl
       r = _r;
       g = _g;
       b = _b;
-      a = 0;
+      a = 255;
     }
 
     friend std::ostream& operator << (std::ostream& os, const PointXYZRGB& p);
@@ -646,7 +648,7 @@ namespace pcl
       x = y = z = 0.0f;
       data[3] = 1.0f;
       r = g = b = 0;
-      a = 0;
+      a = 255;
       label = 255;
     }
     inline PointXYZRGBL (uint8_t _r, uint8_t _g, uint8_t _b, uint32_t _label)
@@ -656,7 +658,7 @@ namespace pcl
       r = _r;
       g = _g;
       b = _b;
-      a = 0;
+      a = 255;
       label = _label;
     }
   
@@ -934,7 +936,8 @@ namespace pcl
     {
       x = y = z = 0.0f;
       data[3] = 1.0f;
-      r = g = b = a = 0;
+      r = g = b = 0;
+      a = 255;
       normal_x = normal_y = normal_z = data_n[3] = 0.0f;
       curvature = 0;
     }
@@ -1405,6 +1408,42 @@ namespace pcl
     friend std::ostream& operator << (std::ostream& os, const ESFSignature640& p);
   };
 
+  PCL_EXPORTS std::ostream& operator << (std::ostream& os, const GASDSignature512& p);
+  /** \brief A point structure representing the Globally Aligned Spatial Distribution (GASD) shape descriptor.
+  * \ingroup common
+  */
+  struct GASDSignature512
+  {
+    float histogram[512];
+    static int descriptorSize() { return 512; }
+
+    friend std::ostream& operator << (std::ostream& os, const GASDSignature512& p);
+  };
+
+  PCL_EXPORTS std::ostream& operator << (std::ostream& os, const GASDSignature984& p);
+  /** \brief A point structure representing the Globally Aligned Spatial Distribution (GASD) shape and color descriptor.
+  * \ingroup common
+  */
+  struct GASDSignature984
+  {
+    float histogram[984];
+    static int descriptorSize() { return 984; }
+
+    friend std::ostream& operator << (std::ostream& os, const GASDSignature984& p);
+  };
+
+  PCL_EXPORTS std::ostream& operator << (std::ostream& os, const GASDSignature7992& p);
+  /** \brief A point structure representing the Globally Aligned Spatial Distribution (GASD) shape and color descriptor.
+  * \ingroup common
+  */
+  struct GASDSignature7992
+  {
+    float histogram[7992];
+    static int descriptorSize() { return 7992; }
+
+    friend std::ostream& operator << (std::ostream& os, const GASDSignature7992& p);
+  };
+
   PCL_EXPORTS std::ostream& operator << (std::ostream& os, const GFPFHSignature16& p);
   /** \brief A point structure representing the GFPFH descriptor with 16 bins.
     * \ingroup common
@@ -1480,7 +1519,7 @@ namespace pcl
 
     union
     {
-      /** \brief Diameter of the meaningfull keypoint neighborhood. */
+      /** \brief Diameter of the meaningful keypoint neighborhood. */
       float scale;
       float size;
     };
@@ -1587,7 +1626,8 @@ namespace pcl
       x = y = z = 0.0f;
       data[3] = 1.0f;
       normal_x = normal_y = normal_z = data_n[3] = 0.0f;
-      rgba = 0;
+      r = g = b = 0;
+      a = 255;
       radius = confidence = curvature = 0.0f;
     }
   
@@ -1611,7 +1651,7 @@ namespace pcl
   {
     inline PointDEM (const _PointDEM &p)
     {
-      x = p.x; y = p.y; x = p.z; data[3] = 1.0f;
+      x = p.x; y = p.y; z = p.z; data[3] = 1.0f;
       intensity = p.intensity;
       intensity_variance = p.intensity_variance;
       height_variance = p.height_variance;

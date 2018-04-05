@@ -115,7 +115,11 @@ namespace pcl
   std::ostream& 
   operator << (std::ostream& os, const PointXYZRGBL& p)
   {
-    os << "(" << p.x << "," << p.y << "," << p.z << " - " << p.r << "," << p.g << "," << p.b << " - " << p.label << ")";
+    os << "(" << p.x << "," << p.y << "," << p.z << " - "
+      << static_cast<int>(p.r) << ","
+      << static_cast<int>(p.g) << ","
+      << static_cast<int>(p.b) << " - "
+      << p.label << ")";
     return (os);
   }
 
@@ -178,7 +182,11 @@ namespace pcl
   std::ostream& 
   operator << (std::ostream& os, const PointXYZRGBNormal& p)
   {
-    os << "(" << p.x << "," << p.y << "," << p.z << " - " << p.rgb << " - " << p.normal[0] << "," << p.normal[1] << "," << p.normal[2] << " - " << p.r << ", " << p.g << ", " << p.b << " - " << p.curvature << ")";
+    os << "(" << p.x << "," << p.y << "," << p.z << " - "<< p.rgb << " - " << p.normal[0] << "," << p.normal[1] << "," << p.normal[2] << " - "
+      << static_cast<int>(p.r) << ", "
+      << static_cast<int>(p.g) << ", "
+      << static_cast<int>(p.b) << " - "
+      << p.curvature << ")";
     return (os);
   }
 
@@ -367,6 +375,30 @@ namespace pcl
     return (os);
   }
 
+  std::ostream&
+  operator << (std::ostream& os, const GASDSignature512& p)
+  {
+    for (int i = 0; i < 512; ++i)
+      os << (i == 0 ? "(" : "") << p.histogram[i] << (i < 511 ? ", " : ")");
+    return (os);
+  }
+
+  std::ostream&
+  operator << (std::ostream& os, const GASDSignature984& p)
+  {
+    for (int i = 0; i < 984; ++i)
+      os << (i == 0 ? "(" : "") << p.histogram[i] << (i < 983 ? ", " : ")");
+    return (os);
+  }
+
+  std::ostream&
+  operator << (std::ostream& os, const GASDSignature7992& p)
+  {
+    for (int i = 0; i < 7992; ++i)
+      os << (i == 0 ? "(" : "") << p.histogram[i] << (i < 7991 ? ", " : ")");
+    return (os);
+  }
+
   std::ostream& 
   operator << (std::ostream& os, const GFPFHSignature16& p)
   {
@@ -408,14 +440,13 @@ namespace pcl
   std::ostream& 
   operator << (std::ostream& os, const PointSurfel& p)
   {
-    const unsigned char* rgba_ptr = reinterpret_cast<const unsigned char*>(&p.rgba);
     os <<
     "(" << p.x << "," << p.y << "," << p.z << " - " <<
     p.normal_x << "," << p.normal_y << "," << p.normal_z << " - "
-    << static_cast<int>(*rgba_ptr) << ","
-    << static_cast<int>(*(rgba_ptr+1)) << ","
-    << static_cast<int>(*(rgba_ptr+2)) << ","
-    << static_cast<int>(*(rgba_ptr+3)) << " - " <<
+    << static_cast<int>(p.r) << ","
+    << static_cast<int>(p.g) << ","
+    << static_cast<int>(p.b) << ","
+    << static_cast<int>(p.a) << " - " <<
     p.radius << " - " << p.confidence << " - " << p.curvature << ")";
     return (os);
   }

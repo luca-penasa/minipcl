@@ -174,12 +174,14 @@ namespace pcl
           return (pcl::PCLPointField::INT8);
         if (type == 'U')
           return (pcl::PCLPointField::UINT8);
+        break;
 
       case 2:
         if (type == 'I')
           return (pcl::PCLPointField::INT16);
         if (type == 'U')
           return (pcl::PCLPointField::UINT16);
+        break;
 
       case 4:
         if (type == 'I')
@@ -188,13 +190,14 @@ namespace pcl
           return (pcl::PCLPointField::UINT32);
         if (type == 'F')
           return (pcl::PCLPointField::FLOAT32);
+        break;
 
       case 8:
-        return (pcl::PCLPointField::FLOAT64);
-
-      default:
-        return (-1);
+        if (type == 'F')
+          return (pcl::PCLPointField::FLOAT64);
+        break;
     }
+    return (-1);
   }
 
   /** \brief Obtains the type of the PCLPointField from a specific PCLPointField as a char
@@ -413,7 +416,7 @@ namespace pcl
     *  BORDER_REFLECT_101:   gfedcb|abcdefgh|gfedcba
     *  BORDER_WRAP:          cdefgh|abcdefgh|abcdefg
     *  BORDER_CONSTANT:      iiiiii|abcdefgh|iiiiiii  with some specified 'i'
-    *  BORDER_TRANSPARENT:   mnopqr|abcdefgh|tuvwxyz  where m-r and t-z are orignal values of cloud_out
+    *  BORDER_TRANSPARENT:   mnopqr|abcdefgh|tuvwxyz  where m-r and t-z are original values of cloud_out
     * \param value
     * \throw pcl::BadArgumentException if any of top, bottom, left or right is negative.
     * \ingroup common

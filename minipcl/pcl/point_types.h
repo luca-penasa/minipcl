@@ -275,6 +275,21 @@ namespace pcl
     */
   struct ESFSignature640;
 
+  /** \brief Members: float gasd[512]
+  * \ingroup common
+  */
+  struct GASDSignature512;
+
+  /** \brief Members: float gasd[984]
+  * \ingroup common
+  */
+  struct GASDSignature984;
+
+  /** \brief Members: float gasd[7992]
+  * \ingroup common
+  */
+  struct GASDSignature7992;
+
   /** \brief Members: float histogram[16]
     * \ingroup common
     */
@@ -627,6 +642,18 @@ POINT_CLOUD_REGISTER_POINT_STRUCT (pcl::ESFSignature640,
     (float[640], histogram, esf)
 )
 
+POINT_CLOUD_REGISTER_POINT_STRUCT(pcl::GASDSignature512,
+    (float[512], histogram, gasd)
+)
+
+POINT_CLOUD_REGISTER_POINT_STRUCT(pcl::GASDSignature984,
+    (float[984], histogram, gasd)
+)
+
+POINT_CLOUD_REGISTER_POINT_STRUCT(pcl::GASDSignature7992,
+    (float[7992], histogram, gasd)
+)
+
 POINT_CLOUD_REGISTER_POINT_STRUCT (pcl::Narf36,
     (float[36], descriptor, descriptor)
 )
@@ -689,7 +716,10 @@ namespace pcl
     {
       if (field.name == "rgb")
       {
-        return (field.datatype == pcl::PCLPointField::FLOAT32 &&
+        // For fixing the alpha value bug #1141, the rgb field can also match
+        // uint32.
+        return ((field.datatype == pcl::PCLPointField::FLOAT32 ||
+                 field.datatype == pcl::PCLPointField::UINT32) &&
                 field.count == 1);
       }
       else
@@ -712,8 +742,10 @@ namespace pcl
       }
       else
       {
+        // For fixing the alpha value bug #1141, rgb can also match uint32
         return (field.name == traits::name<PointT, fields::rgb>::value &&
-                field.datatype == traits::datatype<PointT, fields::rgb>::value &&
+                (field.datatype == traits::datatype<PointT, fields::rgb>::value ||
+                 field.datatype == pcl::PCLPointField::UINT32) &&
                 field.count == traits::datatype<PointT, fields::rgb>::size);
       }
     }
